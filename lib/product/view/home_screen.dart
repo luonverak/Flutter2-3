@@ -1,8 +1,17 @@
+import 'package:demo/product/model/category.dart';
 import 'package:demo/product/widget/font_style.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../model/product.dart';
+import '../widget/category.dart';
+import '../widget/seller.dart';
+import '../widget/slide_show.dart';
+
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -69,73 +78,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -125,
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 1.1,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.amber,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  FontStyleText(
-                                    text: 'Featured',
-                                    textSize: 16,
-                                  ),
-                                  FontStyleText(
-                                    text: 'Bananas',
-                                    textSize: 24,
-                                    textWeight: FontWeight.bold,
-                                  ),
-                                  FontStyleText(
-                                    text: '\$3/Kg',
-                                    textSize: 16,
-                                  ),
-                                ],
-                              ),
-                              Image(
-                                width: 100,
-                                image: AssetImage('asset/image/bananas.png'),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2.4,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5)),
-                            child: const Padding(
-                              padding: EdgeInsets.only(
-                                  left: 20, right: 20, top: 10, bottom: 10),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.shopping_cart),
-                                  FontStyleText(
-                                    text: 'Order Now !',
-                                    textSize: 16,
-                                    textWeight: FontWeight.bold,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                bottom: -100,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.1,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < productList.length; i++)
+                          SlideShow(product: productList[i])
+                      ],
                     ),
                   ),
                 ),
@@ -158,124 +110,13 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15),
             child: Row(
               children: [
-                Container(
-                  height: 170,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 135,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('asset/image/user.jpg'),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: Colors.green[600],
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const Text(
-                                  'Banana',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(50)),
-                                  child: const Icon(
-                                    Icons.chevron_right_rounded,
-                                    size: 16,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Container(
-                  height: 170,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: double.infinity,
-                        height: 135,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: const DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage('asset/image/bananas.png'),
-                          ),
-                        ),
-                      ),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: Colors.green[600],
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(6),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                const Text(
-                                  'Banana',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(50)),
-                                  child: const Icon(
-                                    Icons.chevron_right_rounded,
-                                    size: 16,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
+                ListView.builder(
+                  itemCount: categoryList.length,
+                  itemBuilder: (context, index) {
+                    return CategoryProduct(
+                      productCategory: categoryList[index],
+                    );
+                  },
                 ),
                 const SizedBox(
                   width: 10,
@@ -297,57 +138,7 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Container(
-                  width: 200,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    color: Colors.amber,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.topRight,
-                    children: [
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CircleAvatar(
-                            radius: 35,
-                            backgroundImage: AssetImage('asset/image/user.jpg'),
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              FontStyleText(
-                                text: 'Jonh Doe',
-                                textWeight: FontWeight.bold,
-                                textSize: 18,
-                              ),
-                              FontStyleText(
-                                text: 'Location',
-                                textSize: 16,
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: const Icon(
-                              Icons.chevron_right_rounded,
-                              size: 18,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                TopSeller(),
               ],
             ),
           )
@@ -413,23 +204,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-// BottomNavigationBar(
-//         items: const [
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.home),
-//             label: 'Home',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.category),
-//             label: 'Category',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.add),
-//             label: 'Sell',
-//           ),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.chat),
-//             label: 'Chat',
-//           ),
-//         ],
-//       ),
