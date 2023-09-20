@@ -1,6 +1,5 @@
 import 'package:demo/product/model/category.dart';
 import 'package:demo/product/widget/font_style.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../model/product.dart';
@@ -106,21 +105,14 @@ class HomeScreen extends StatelessWidget {
               textWeight: FontWeight.bold,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
             child: Row(
               children: [
-                ListView.builder(
-                  itemCount: categoryList.length,
-                  itemBuilder: (context, index) {
-                    return CategoryProduct(
-                      productCategory: categoryList[index],
-                    );
-                  },
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
+                for (int i = 0; i < categoryList.length; i++)
+                  CategoryProduct(
+                    productCategory: categoryList[i],
+                  ),
               ],
             ),
           ),
