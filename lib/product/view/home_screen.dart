@@ -1,9 +1,12 @@
 import 'package:demo/product/model/category.dart';
+import 'package:demo/product/model/seller.dart';
 import 'package:demo/product/widget/font_style.dart';
 import 'package:flutter/material.dart';
 
 import '../model/product.dart';
 import '../widget/category.dart';
+import '../widget/drawer.dart';
+import '../widget/header.dart';
 import '../widget/seller.dart';
 import '../widget/slide_show.dart';
 
@@ -15,126 +18,104 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          // Header Screen
-          Stack(
-            alignment: Alignment.bottomCenter,
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                height: 250,
-                width: double.infinity,
-                color: Colors.green[700],
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.menu,
-                              color: Colors.white,
-                            ),
-                          ),
-                          const FontStyleText(
-                            text: 'Hao Nham',
-                            textSize: 25,
-                            textColor: Colors.white,
-                            textWeight: FontWeight.bold,
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.location_on,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.all(20),
-                        child: TextField(
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(width: 2, color: Colors.white),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Search Products',
-                              hintStyle: TextStyle(color: Colors.white)),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: -100,
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.1,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
+      drawer: const MyDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Container(
+                  height: 300,
+                  width: double.infinity,
+                  color: Colors.green[700],
+                  child: const SafeArea(
+                    child: Column(
                       children: [
-                        for (int i = 0; i < productList.length; i++)
-                          SlideShow(product: productList[i])
+                        Header(),
+                        Padding(
+                          padding: EdgeInsets.all(20),
+                          child: TextField(
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:
+                                      BorderSide(width: 2, color: Colors.white),
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                ),
+                                hintText: 'Search Products',
+                                hintStyle: TextStyle(color: Colors.white)),
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
-          // Body Screen
-          const SizedBox(
-            height: 100,
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 17, top: 20, bottom: 10),
-            child: FontStyleText(
-              text: 'Categories',
-              textSize: 18,
-              textWeight: FontWeight.bold,
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for (int i = 0; i < categoryList.length; i++)
-                  CategoryProduct(
-                    productCategory: categoryList[i],
+                Positioned(
+                  bottom: -100,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.1,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          for (int i = 0; i < productList.length; i++)
+                            SlideShow(product: productList[i])
+                        ],
+                      ),
+                    ),
                   ),
+                )
               ],
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.all(15),
-            child: FontStyleText(
-              text: 'Top Sellers',
-              textSize: 18,
-              textWeight: FontWeight.bold,
+            // Body Screen
+            const SizedBox(
+              height: 85,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 15,
+            const Padding(
+              padding: EdgeInsets.only(left: 17, top: 20, bottom: 10),
+              child: FontStyleText(
+                text: 'Categories',
+                textSize: 18,
+                textWeight: FontWeight.bold,
+              ),
             ),
-            child: Row(
-              children: [
-                TopSeller(),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (int i = 0; i < categoryList.length; i++)
+                    CategoryProduct(
+                      productCategory: categoryList[i],
+                    ),
+                ],
+              ),
             ),
-          )
-        ],
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: FontStyleText(
+                text: 'Top Sellers',
+                textSize: 18,
+                textWeight: FontWeight.bold,
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (int i = 0; i < sellerList.length; i++)
+                    TopSeller(seller: sellerList[i])
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 20),

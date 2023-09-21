@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../model/category.dart';
-import '../model/product.dart';
 
 class CategoryProduct extends StatelessWidget {
   const CategoryProduct({super.key, required this.productCategory});
@@ -9,10 +8,10 @@ class CategoryProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(left: 8),
       child: Container(
-        height: 170,
-        width: 150,
+        height: 150,
+        width: 135,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
         ),
@@ -20,11 +19,13 @@ class CategoryProduct extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: 135,
+              height: 115,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image(
                   image: AssetImage(productCategory.thumbnail),
                 ),
               ),
