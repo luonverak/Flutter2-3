@@ -1,5 +1,5 @@
+import 'package:demo/product/view/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'flutter_package/google_map.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MapSample(),
+      home: HomeScreen(),
     );
   }
 }
