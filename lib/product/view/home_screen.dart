@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                 Container(
                   height: 300,
                   width: double.infinity,
-                  color: Colors.green[700],
+                  color: Colors.green[600],
                   child: const SafeArea(
                     child: Column(
                       children: [

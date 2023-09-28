@@ -24,7 +24,7 @@ class Product {
 List<Product> productList = [
   Product(
     id: 1,
-    name: 'Banna',
+    name: 'Banana',
     kilo: 2,
     price: 3,
     thumbnail: 'asset/image/bananas.png',

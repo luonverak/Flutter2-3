@@ -23,11 +23,6 @@ class DetailScreen extends StatelessWidget {
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40),
                   ),
-                  // image: DecorationImage(
-                  //   image: AssetImage(
-                  //     product.thumbnail,
-                  //   ),
-                  // ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(40),
