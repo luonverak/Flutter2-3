@@ -4,11 +4,12 @@ class Seller {
   final String profile;
   final String location;
 
-  Seller(
-      {required this.id,
-      required this.name,
-      required this.profile,
-      required this.location});
+  Seller({
+    required this.id,
+    required this.name,
+    required this.profile,
+    required this.location,
+  });
 }
 
 List<Seller> sellerList = [
